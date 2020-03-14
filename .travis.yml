@@ -33,7 +33,7 @@ script:
 - cppcheck --quiet --error-exitcode=1 .
 - mkdir build && cd build
 - cmake -DCMAKE_CXX_COMPILER=$COMPILER -DCMAKE_BUILD_TYPE=Coverage .. && make -j4
-- cd ../test
+- cd test
 - ./normal_test
 - cd ..
 - make coverage
