@@ -1,0 +1,6 @@
+ADD_SUBDIRECTORY(chicken_controller)
+INCLUDE_DIRECTORIES(chicken_controller)
+
+ADD_EXECUTABLE(normal_chicken normal_main.cpp)
+
+TARGET_LINK_LIBRARIES(normal_chicken normal_chicken_controller pthread)

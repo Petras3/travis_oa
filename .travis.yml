@@ -1,0 +1,59 @@
+language: c++
+
+matrix:
+  include:
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-4.9
+          env: COMPILER=g++-4.9
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-6
+          env: COMPILER=g++-6
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-precise-3.6
+          packages:
+            - clang-3.6
+          env: COMPILER=clang++-3.6
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-precise-3.7
+          packages:
+            - clang-3.7
+          env: COMPILER=clang++-3.7
+
+notification:
+  email: false
+
+befor_install:
+- sudo apt-get update -qq
+
+install:
+- sudo apt-get install -qq cppcheck qt5-default qtbase5-dev lcov
+
+script:
+- cppcheck --quiet --error-exitcode=1 .
+- mkdir build && cd build
+- cmake -DCMAKE_CXX_COMPILER=$COMPILER -DCMAKE_BUILD_TYPE=Coverage .. && make -j4
+- cd src
+- ./travis_test
+- cd ../test
+- ./example_test
+- cd ..
+- make coverage
+
