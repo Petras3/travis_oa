@@ -48,7 +48,7 @@ TEST_CASE("chicken running") {
 
     std::thread t(running,&c);
 
-    std::this_thread::sleep_for(std::chrono::seconds(26));//TODO: if sleep == 25 test runtime = 25.001, if sleep == 26 test runtime = 30.002 ??
+    std::this_thread::sleep_for(std::chrono::seconds(25));//TODO: if sleep == 25 test runtime = 25.001, if sleep == 26 test runtime = 30.002 ??
 
 //    for(int i = 0; i < 5; i++) {
 //        std::this_thread::sleep_for(std::chrono::seconds(5));

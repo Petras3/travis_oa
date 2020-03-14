@@ -27,14 +27,11 @@ befor_install:
 - sudo apt-get update -qq
 
 install:
-- sudo apt-get install -qq cppcheck qt5-default qtbase5-dev lcov
+- sudo apt-get install -qq  qt5-default qtbase5-dev lcov
 
 script:
-- cppcheck --quiet --error-exitcode=1 .
 - mkdir build && cd build
-- cmake -DCMAKE_CXX_COMPILER=$COMPILER -DCMAKE_BUILD_TYPE=Coverage .. && make -j4
-- cd test
-- ./normal_test
+- cmake -DCMAKE_CXX_COMPILER=$COMPILER .. && make -j4
+- cd tests
+- ./normal_tests
 - cd ..
-- make coverage
-
