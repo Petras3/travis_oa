@@ -33,8 +33,6 @@ script:
 - cppcheck --quiet --error-exitcode=1 .
 - mkdir build && cd build
 - cmake -DCMAKE_CXX_COMPILER=$COMPILER -DCMAKE_BUILD_TYPE=Coverage .. && make -j4
-- cd src
-- ./normal_chicken
 - cd ../test
 - ./normal_test
 - cd ..
